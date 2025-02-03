@@ -26,10 +26,10 @@ public class ApiV1PostController {
 
     @GetMapping("/{id}")
     public PostDto getItem(@PathVariable long id) {
-        Post post = postService.findById(id).get();
-
-        return new PostDto(post);
-    }
+        return postService.findById(id)
+                .map(PostDto::new)
+                .orElseThrow();
+        }
 
     @DeleteMapping("/{id}")
     public RsData deleteItem(@PathVariable long id) {
