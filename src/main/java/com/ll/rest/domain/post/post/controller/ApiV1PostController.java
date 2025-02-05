@@ -86,15 +86,13 @@ public class ApiV1PostController {
     public RsData<Map<String, Object>> writeItem(@RequestBody @Valid PostWriteReqBody reqBody) {
         Post post = postService.write(reqBody.title, reqBody.content);
 
-        Map<String, Object> data = Map.of(
-                "item", new PostDto(post),
-                "totalCount", postService.count()
-        );
-
         return new RsData<>(
                 "200-1",
                 "%d번 글이 작성되었습니다.".formatted(post.getId()),
-                data
+                Map.of(
+                        "item", new PostDto(post),
+                        "totalCount", postService.count()
+                )
         );
     }
 }
