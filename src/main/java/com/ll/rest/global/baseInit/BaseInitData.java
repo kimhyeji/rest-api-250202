@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.transaction.annotation.Transactional;
+import com.ll.rest.domain.member.member.entity.Member;
+import com.ll.rest.domain.member.member.service.MemberService;
 
 @Configuration
 @RequiredArgsConstructor
