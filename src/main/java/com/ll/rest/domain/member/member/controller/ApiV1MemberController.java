@@ -38,8 +38,8 @@ public class ApiV1MemberController {
     ) {
     }
 
-    @PostMapping
-    public RsData<MemberJoinResBody> join(
+    @PostMapping("/join")
+    public RsData<MemberDto> join(
             @RequestBody @Valid MemberJoinReqBody reqBody
     ) {
         Member member = memberService.join(reqBody.username, reqBody.password, reqBody.nickname);
@@ -47,10 +47,7 @@ public class ApiV1MemberController {
         return new RsData<>(
                 "201-1",
                 "%s님 환영합니다.".formatted(member.getNickname()),
-                new MemberJoinResBody(
-                        new MemberDto(member),
-                        memberService.count()
-                )
+                new MemberDto(member)
         );
     }
 }
